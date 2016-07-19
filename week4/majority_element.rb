@@ -14,9 +14,9 @@ def merge(arr1, arr2)
   return arr1 if arr2.empty?
 
   if arr1.first < arr2.first
-    [arr1.first] + merge(arr1[1..arr1.size], arr2)
+    [arr1.first] + merge(arr1[1..arr1.size-1], arr2)
   else
-    [arr2.first] + merge(arr1, arr2[1..arr2.size])
+    [arr2.first] + merge(arr1, arr2[1..arr2.size-1])
   end
 end
 

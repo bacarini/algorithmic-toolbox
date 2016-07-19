@@ -14,10 +14,10 @@ def merge(arr1, arr2)
   return arr1, 0 if arr2.empty?
 
   if arr1.first > arr2.first
-    arr, count = merge(arr1, arr2[1..arr2.size])
+    arr, count = merge(arr1, arr2[1..arr2.size-1])
     return [arr2.first] + arr, count += arr1.size
   else
-    arr, count = merge(arr1[1..arr1.size], arr2)
+    arr, count = merge(arr1[1..arr1.size-1], arr2)
     return [arr1.first] + arr, count
   end
 end
