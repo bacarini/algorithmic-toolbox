@@ -1,11 +1,3 @@
-def frequency(arr, key)
-  count = 0
-  for i in arr
-    count += 1 if i == key
-  end
-  count
-end
-
 def merge_sort(arr)
   if arr.size <= 1
     return arr
@@ -13,7 +5,7 @@ def merge_sort(arr)
 
   mid = arr.size / 2
   b = merge_sort(arr[0..mid-1])
-  c = merge_sort(arr[mid..arr.size])
+  c = merge_sort(arr[mid..arr.size-1])
   merge(b, c)
 end
 
@@ -28,20 +20,25 @@ def merge(arr1, arr2)
   end
 end
 
+def counting(sorted, n)
+  memo = nil
+  count = 0
+
+  for i in sorted
+    if memo != i
+      memo = i
+      count = 1
+    else
+      count += 1
+      return 1 if count > n / 2
+    end
+  end
+
+  0
+end
+
 n = gets.chomp.to_i
 arr = gets.chomp.split.map(&:to_i)
 
 sorted = merge_sort(arr)
-memo = nil
-count = 0
-for i in sorted.uniq
-  if memo != i
-    memo = i
-    feq = frequency(sorted, memo)
-    if feq > arr.size / 2
-      count +=1
-    end
-  end
-end
-
-puts count
+puts counting(sorted, n)

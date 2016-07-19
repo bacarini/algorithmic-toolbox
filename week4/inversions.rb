@@ -1,9 +1,9 @@
-def merge_sort(arr, inversion)
+def merge_sort(arr, inversion = 0)
   return arr, inversion if arr.size <= 1
 
   mid = arr.size / 2
   b, inversion_b = merge_sort(arr[0..mid-1], inversion)
-  c, inversion_c = merge_sort(arr[mid..arr.size], inversion)
+  c, inversion_c = merge_sort(arr[mid..arr.size-1], inversion)
   d, inversion_d = merge(b, c)
 
   return d, inversion_b + inversion_c + inversion_d
@@ -25,5 +25,5 @@ end
 n = gets.chomp.to_i
 arr = gets.chomp.split.map(&:to_i)
 
-sorted, inversion = merge_sort(arr, 0)
+sorted, inversion = merge_sort(arr)
 puts inversion
