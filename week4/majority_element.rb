@@ -40,5 +40,9 @@ end
 n = gets.chomp.to_i
 arr = gets.chomp.split.map(&:to_i)
 
-sorted = merge_sort(arr)
-puts counting(sorted, n)
+if n == 1 && arr.size == 1
+  puts 1
+else
+  sorted = merge_sort(arr)
+  puts counting(sorted, n)
+end
