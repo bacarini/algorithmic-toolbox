@@ -10,16 +10,32 @@ def merge_sort(arr, inversion = 0)
 end
 
 def merge(arr1, arr2)
-  return arr2, 0 if arr1.empty?
-  return arr1, 0 if arr2.empty?
+  merged = []
+  count = 0
 
-  if arr1.first > arr2.first
-    arr, count = merge(arr1, arr2[1..arr2.size-1])
-    return [arr2.first] + arr, count += arr1.size
-  else
-    arr, count = merge(arr1[1..arr1.size-1], arr2)
-    return [arr1.first] + arr, count
+  while !arr1.empty? || !arr2.empty?
+    b = arr1.first
+    c = arr2.first
+
+    if b.nil?
+      merged << arr2.shift
+    elsif c.nil?
+      merged << arr1.shift
+    elsif arr1.first > arr2.first
+      merged << arr2.shift
+      count += arr1.size
+    else
+      merged << arr1.shift
+    end
   end
+
+  if !arr1.empty?
+    merged << arr1
+  elsif !arr2.empty?
+    merged << arr2
+  end
+
+  return merged, count
 end
 
 n = gets.chomp.to_i
