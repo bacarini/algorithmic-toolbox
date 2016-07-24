@@ -15,7 +15,7 @@ def edit_string(first_string, second_string)
 
   for i in 1..(second_string.size)
     for j in 1..(first_string.size)
-      if first_string[i-1] == second_string[j-1]
+      if second_string[i-1] == first_string[j-1]
         matrix[i][j] = matrix[i-1][j-1]
       else
         val = [matrix[i-1][j-1], matrix[i-1][j], matrix[i][j-1]].min
